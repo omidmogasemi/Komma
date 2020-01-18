@@ -11,6 +11,6 @@
     <string name="log_sales_button">Log Sale</string>
     <string name="view_analytics_button">View Analytics</string>
     <string name="date">Date:</string>
-
+    <string name="home">Home</string>
     <string name="submit_button">Submit</string>
 </resources>
