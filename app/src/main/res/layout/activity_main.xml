@@ -15,17 +15,19 @@
         <!-- TextView and other stuff -->
 
         <Button
+            android:background="@drawable/white_button_background"
             android:id="@+id/popular_button"
             android:layout_width="0dp"
             android:layout_height="71dp"
             android:layout_marginTop="26dp"
             android:layout_marginEnd="26dp"
-            android:text="popular"
+            android:text="@string/popular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/home_button"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:background="@drawable/white_button_background"
             android:id="@+id/home_button"
             android:layout_width="0dp"
             android:layout_height="71dp"
