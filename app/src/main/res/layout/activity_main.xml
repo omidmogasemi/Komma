@@ -41,6 +41,7 @@
             app:layout_constraintTop_toTopOf="@+id/popular_button" />
 
         <Button
+            android:background="@drawable/white_button_background"
             android:id="@+id/log_out_button"
             android:layout_width="0dp"
             android:layout_height="71dp"
