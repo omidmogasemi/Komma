@@ -12,7 +12,7 @@ public class MyEvent {
         attendees = 0;
         location = l;
     }
-
+//
     public void setName(String name) {
         this.name = name;
     }
