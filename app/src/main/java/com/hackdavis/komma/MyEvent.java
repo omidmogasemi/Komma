@@ -11,7 +11,7 @@ public class MyEvent {
         startDate = sd;
         attendees = 0;
     }
-
+    //interesting
     public MyEvent() {
 
     }
