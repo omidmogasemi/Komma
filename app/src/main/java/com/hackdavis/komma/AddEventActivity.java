@@ -1,5 +1,6 @@
 package com.hackdavis.komma;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -19,43 +20,81 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class AddEventActivity extends AppCompatActivity {
     private EditText inputName, inputDescription;
     private static int day, month, year, hour, minute;
     private String tag;
 
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
         initFields();
+    }
+
+    private void initFields()
+    {
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        inputName = (EditText)findViewById(R.id.name);
+        inputDescription = (EditText)findViewById(R.id.description);
 
         Spinner dropdown = (Spinner) findViewById(R.id.tag_dropdown);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tag_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown.setAdapter(adapter);
+        dropdown.setOnItemSelectedListener(this);
     }
-    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener
-    {
-        SpinnerActivity(){}
-        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
-        {
-            tag = parent.getItemAtPosition(pos).toString();
-            Log.d("HELLO", tag);
-        }
-        public void onNothingSelected(AdapterView<?> adapterView){}
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
+        Spinner spinner = (Spinner) parent;
+        tag = parent.getItemAtPosition(pos).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-    private void initFields()
-    {
-        inputName = (EditText)findViewById(R.id.name);
-        inputDescription = (EditText)findViewById(R.id.description);
-    }
+
     public void send_data(View view) {
         String name = inputName.getText().toString();
         String description = inputDescription.getText().toString();
+
+        final String currentUserID = mAuth.getCurrentUser().getUid();
+        MyEvent event = new MyEvent(inputName, inputDescription, startTime, startDate, endTime, endDate);
+        String token = UUID.randomUUID().toString();
+
+        Map<String, Object> newEvent = new HashMap<>();
+        newEvent.put(token, event);
+        db.collection("events").document(tag).set(newEvent, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
     }
 
     public static class TimePickerFragment extends DialogFragment
@@ -112,7 +151,6 @@ public class AddEventActivity extends AppCompatActivity {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getSupportFragmentManager(), "timePicker");
     }
-
 
     public void showDatePickerDialogStartDate(View v) {
         DialogFragment newFragment = new DatePickerFragment();
