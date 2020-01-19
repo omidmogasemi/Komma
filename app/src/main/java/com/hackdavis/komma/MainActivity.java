@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,14 +34,22 @@ public class MainActivity extends AppCompatActivity {
         initializeFields();
 
         linearLayout = findViewById(R.id.linear_layout_main);
+        //honestly not exactly sure what this does, but it works to get me a fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        FragmentActivityPoo np = new FragmentActivityPoo();
-        for(int i = 0; i < 50; i++)
-        {
-            TextView textView = new TextView(this);
-            textView.setText("Event: " + i + "\n Location: Haring Hall \n Date: January 25 \n Time: 8:00PM");
-            linearLayout.addView(textView);
-        }
+        FragmentManager fragMan = getSupportFragmentManager();
+        FragmentTransaction fragTransaction = fragMan.beginTransaction();
+
+        FragmentActivityPoo myFrag = new FragmentActivityPoo();
+        myFrag.setNameText("Party in ARC");
+        myFrag.setLocationText("Davis, CA");
+        myFrag.setDescriptionText("We are gonna code till we throw up");
+        myFrag.numberGoingText("450");
+        myFrag.dateTimeText("January 20, 2020. 18:00");
+
+        fragTransaction.add(linearLayout.getId(), myFrag , "fragment");
+        fragTransaction.commit();
+        //
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         if (currentUser == null)
