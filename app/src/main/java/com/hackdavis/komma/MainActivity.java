@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
     private void sendUserToSavedActivity() {
         Intent savedIntent = new Intent(MainActivity.this, SavedActivity.class);
         startActivity(savedIntent);
-
     }
 
     private void sendUserToLoginActivityWithFlags() {

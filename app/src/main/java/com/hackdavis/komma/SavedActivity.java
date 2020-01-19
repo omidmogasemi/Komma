@@ -56,6 +56,5 @@ public class SavedActivity extends AppCompatActivity {
 
     private void sendUserToSavedActivity() {
         return;
-
     }
 }

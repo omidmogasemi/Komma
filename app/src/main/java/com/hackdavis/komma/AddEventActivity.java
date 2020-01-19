@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -52,6 +54,47 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
         initFields();
+        BottomNavigationView nav = (BottomNavigationView) findViewById(R.id.nav_view);
+        nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        sendUserToHomeActivity();
+                        return true;
+                    case R.id.search:
+                        sendUserToSearchActivity();
+                        return true;
+                    case R.id.add:
+                        sendUserToAddActivity();
+                        return true;
+
+                    case R.id.saved:
+                        sendUserToSavedActivity();
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    private void sendUserToHomeActivity() {
+        Intent homeIntent = new Intent(AddEventActivity.this, MainActivity.class);
+        startActivity(homeIntent);
+    }
+
+    private void sendUserToSearchActivity() {
+        Intent searchIntent = new Intent(AddEventActivity.this, SearchActivity.class);
+        startActivity(searchIntent);
+    }
+
+    private void sendUserToAddActivity() {
+        return;
+    }
+
+    private void sendUserToSavedActivity() {
+        Intent savedIntent = new Intent(AddEventActivity.this, SavedActivity.class);
+        startActivity(savedIntent);
     }
 
     private void initFields()
