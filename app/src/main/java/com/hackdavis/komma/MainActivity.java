@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initializeFields();
 
-
         // Construct the data source
         ArrayList<MyEvent> arrayOfUsers = new ArrayList<MyEvent>();
 

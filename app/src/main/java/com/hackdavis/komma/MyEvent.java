@@ -1,9 +1,9 @@
 package com.hackdavis.komma;
 
 public class MyEvent {
-    private String name, description, startTime, startDate, location;
-    private int attendees;
-
+    public String name, description, startTime, startDate, location;
+    public int attendees;
+  
     public MyEvent(String n, String d, String st, String sd, int a, String l) {
         name = n;
         description = d;
@@ -11,6 +11,10 @@ public class MyEvent {
         startDate = sd;
         attendees = 0;
         location = l;
+    }
+    //interesting
+    public MyEvent() {
+
     }
 
     public void setName(String name) {
