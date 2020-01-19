@@ -60,8 +60,7 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-
-    private void sendUserToHomeActivity() {
+    private void sendUserToHomeActivity()
         Intent homeIntent = new Intent(SearchActivity.this, MainActivity.class);
         startActivity(homeIntent);
     }
