@@ -11,15 +11,15 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,13 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
         linearLayout = findViewById(R.id.linear_layout_main);
         //honestly not exactly sure what this does, but it works to get me a fragment
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        FragmentManager fragMan = getSupportFragmentManager();
-        FragmentTransaction fragTransaction = fragMan.beginTransaction();
+        //FragmentManager fragMan = getSupportFragmentManager();
+        //FragmentTransaction fragTransaction = fragMan.beginTransaction();
 
-        Fragment myFrag = new FragmentActivityPoo();
-        //myFrag.setNameText("Party in ARC");
+        //FragmentActivityPoo myFrag = new FragmentActivityPoo();
+       // myFrag.setNameText("Party in ARC");
         //myFrag.setLocationText("Davis, CA");
         //myFrag.setDescriptionText("We are gonna code till we throw up");
         //myFrag.numberGoingText("450");
@@ -50,6 +49,18 @@ public class MainActivity extends AppCompatActivity {
         //fragTransaction.add(linearLayout.getId(), myFrag , "fragment");
         //fragTransaction.commit();
         //
+
+
+        // Construct the data source
+        ArrayList<MyEvent> arrayOfUsers = new ArrayList<MyEvent>();
+// Create the adapter to convert the array to views
+        UsersAdapter adapter = new UsersAdapter(this, arrayOfUsers);
+// Attach the adapter to a ListView
+        ListView listView = (ListView) findViewById(R.id.main_listView);
+        listView.setAdapter(adapter);
+
+
+
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         if (currentUser == null)

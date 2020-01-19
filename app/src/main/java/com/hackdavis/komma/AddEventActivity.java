@@ -126,9 +126,10 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
     public void send_data(View view) {
         String name = inputName.getText().toString();
         String description = inputDescription.getText().toString();
+        String location = inputDescription.getText().toString();
 
         final String currentUserID = mAuth.getCurrentUser().getUid();
-        MyEvent event = new MyEvent(name, description, convertTime(hour, minute), convertDate(year, month, day), 0);
+        MyEvent event = new MyEvent(name, description, convertTime(hour, minute), convertDate(year, month, day), 0, location);
         String token = UUID.randomUUID().toString();
 
         Map<String, Object> newEvent = new HashMap<>();

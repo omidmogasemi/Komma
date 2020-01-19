@@ -1,15 +1,16 @@
 package com.hackdavis.komma;
 
 public class MyEvent {
-    private String name, description, startTime, startDate;
+    private String name, description, startTime, startDate, location;
     private int attendees;
 
-    public MyEvent(String n, String d, String st, String sd, int a) {
+    public MyEvent(String n, String d, String st, String sd, int a, String l) {
         name = n;
         description = d;
         startTime = st;
         startDate = sd;
         attendees = 0;
+        location = l;
     }
 
     public void setName(String name) {
@@ -24,8 +25,14 @@ public class MyEvent {
         this.startTime = startTime;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setStartDate(String startDate) { this.startDate = startDate; }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setAttendees(int attendees) {
+        this.attendees = attendees;
     }
 
     public String getName() {
@@ -40,12 +47,10 @@ public class MyEvent {
         return startTime;
     }
 
-    public String getStartDate() {
-        return startDate;
-    }
+    public String getStartDate() { return startDate; }
 
-    public void setAttendees(int attendees) {
-        this.attendees = attendees;
+    public String getLocation() {
+        return location;
     }
 
     public int getAttendees() {
