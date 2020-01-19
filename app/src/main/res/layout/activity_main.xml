@@ -49,21 +49,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:orientation="horizontal"
             android:layout_marginTop="20dp">
 
-            <Button
-                android:id="@+id/logout_button"
-                android:layout_width="0dp"
-                android:layout_height="70dp"
-                android:layout_weight="1"
-                android:layout_marginStart="45dp"
-                android:layout_marginEnd="280dp"
-                android:layout_marginTop="340dp"
-                android:background="@drawable/white_button_background"
-                android:text="@string/logout" />
-        </LinearLayout>
 
+            <Button
+                android:background="@drawable/white_button_background"
+                android:id="@+id/button8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="60dp"
+
+                android:text="Button8" />
+
+            <Button
+                android:background="@drawable/white_button_background"
+                android:id="@+id/button7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Button9" />
+        </LinearLayout>
 
 
     </LinearLayout>
