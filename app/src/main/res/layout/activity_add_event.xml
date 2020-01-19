@@ -10,7 +10,6 @@
         android:id="@+id/name"
         android:layout_width="350dp"
         android:layout_height="55dp"
-        android:layout_marginTop="80dp"
         android:background="@drawable/edittext_background"
         android:ems="20"
         android:fontFamily="@font/montserrat"
@@ -22,14 +21,17 @@
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_image" />
+        />
+
 
     <Button
         android:id="@+id/start_date"
         android:layout_width="165dp"
         android:layout_height="55dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="17dp"
         android:background="@drawable/edittext_background"
         android:fontFamily="@font/montserrat"
         android:hint="Start Date"
@@ -38,15 +40,20 @@
         android:padding="15dp"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/start_time"
+        app:layout_constraintEnd_toStartOf="@+id/end_date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@+id/name"
         app:layout_goneMarginLeft="4dp" />
 
     <Button
         android:id="@+id/end_date"
         android:layout_width="165dp"
         android:layout_height="55dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="17dp"
         android:background="@drawable/edittext_background"
         android:fontFamily="@font/montserrat"
         android:hint="End Date"
@@ -55,43 +62,48 @@
         android:padding="15dp"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/end_time"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/start_date"
-        app:layout_constraintTop_toBottomOf="@id/name" />
+        app:layout_constraintStart_toEndOf="@+id/start_date"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
-
-    <EditText
+    <Button
         android:id="@+id/start_time"
         android:layout_width="165dp"
         android:layout_height="55dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/edittext_background"
         android:ems="20"
         android:fontFamily="@font/montserrat"
         android:hint="Start Time"
         android:inputType="textPersonName"
         android:maxEms="20"
+        android:onClick="showTimePickerDialogStartDate"
         android:padding="16dp"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintEnd_toStartOf="@+id/end_time"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/end_date" />
+        app:layout_constraintTop_toBottomOf="@+id/start_date" />
 
-    <EditText
+    <Button
         android:id="@+id/end_time"
         android:layout_width="165dp"
         android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/edittext_background"
         android:fontFamily="@font/montserrat"
         android:hint="End Time"
         android:inputType="text"
+        android:onClick="showTimePickerDialogEndDate"
         android:padding="16dp"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.898"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="168dp" />
+        app:layout_constraintStart_toEndOf="@+id/start_time"
+        app:layout_constraintTop_toBottomOf="@+id/end_date" />
 </androidx.constraintlayout.widget.ConstraintLayout>
