@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Komma</string>
+    <string name="app_name">Shoe Sheets</string>
     <string name="login_button">Login</string>
     <string name="register_button">Register</string>
     <string name="email">Email</string>
@@ -13,8 +13,11 @@
     <string name="date">Date:</string>
     <string name="home">Home</string>
     <string name="submit_button">Submit</string>
-    <string name="popular">popular</string>
-    <string name="home_text">Home</string>
-    <string name="popular_text">Popular</string>
-    <string name="logout">Logout</string>
+    <string-array name="tag_options">
+        <item>Davis Computer Science Club</item>
+        <item>History Club</item>
+        <item>Philosophy Club</item>
+        <item>Entrepreneurship Club</item>
+        <item>Women in Computer Science</item>
+    </string-array>
 </resources>

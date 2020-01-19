@@ -1,85 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main_layout"
-    android:background="@color/colorPrimary">
+    android:fillViewport="true">
 
-
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:orientation="vertical" android:layout_width="match_parent"
+        <!-- TextView and other stuff -->
+
+        <Button
+            android:id="@+id/popular_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="586dp"
+            android:text="popular"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/home_button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/home_button"
+            android:layout_width="0dp"
+            android:layout_height="71dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
+            android:baselineAligned="false"
+            android:text="@string/home"
+            app:layout_constraintBottom_toBottomOf="@+id/popular_button"
+            app:layout_constraintEnd_toStartOf="@+id/popular_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/popular_button" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/linear_layout_main">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="15dp"
-                android:id="@+id/buttons">
+            android:layout_marginEnd="140dp"
+            android:onClick="clickAddButton"
+            android:text="Add Button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/popular_button" />
 
-                <Button
-                    android:background="@drawable/white_button_background"
-                    android:id="@+id/home_button"
-                    android:layout_width="130dp"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="80dp"
-                    android:layout_marginRight="40dp"
-                    android:text="@string/home_text"
-                    android:onClick="onHomeClick"/>
-
-                <Button
-
-                    android:background="@drawable/white_button_background"
-                    android:id="@+id/popular_button"
-                    android:layout_width="130dp"
-                    android:layout_height="70dp"
-                    android:layout_marginEnd="80dp"
-                    android:layout_marginLeft="40dp"
-                    android:text="@string/popular_text"
-                    android:onClick="onPopularClick"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/linear_layout"
-                android:layout_marginBottom="25dp">
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp"/>
-        </LinearLayout>
-    </ScrollView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        app:itemIconTint="@color/colorPrimaryDark"
-        app:itemTextColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:itemHorizontalTranslationEnabled="false"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/navigation" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

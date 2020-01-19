@@ -1,17 +1,10 @@
 package com.hackdavis.komma;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
-    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,57 +20,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initializeFields();
 
-        linearLayout = findViewById(R.id.linear_layout_main);
-
-        for(int i = 0; i < 50; i++)
-        {
-            TextView textView = new TextView(this);
-            textView.setText("Event: " + i + "\n Location: Haring Hall \n Date: January 25 \n Time: 8:00PM");
-            linearLayout.addView(textView);
-        }
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         if (currentUser == null)
             sendUserToLoginActivityWithFlags();
-    }
-
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.home:
-                    sendUserToHomeActivity();
-                    return true;
-
-                case R.id.search:
-                    sendUserToSearchActivity();
-                    return true;
-
-                case R.id.add:
-                    sendUserToAddActivity();
-                    return true;
-
-                case R.id.saved:
-                    sendUserToSavedActivity();
-                    return true;
-            }
-            return false;
-        }
-    };
-
-    private void sendUserToHomeActivity() {
-    }
-
-    private void sendUserToSearchActivity() {
-    }
-
-    private void sendUserToAddActivity() {
-    }
-
-    private void sendUserToSavedActivity() {
     }
 
     private void sendUserToLoginActivityWithFlags() {
@@ -88,19 +33,13 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    public void clickAddButton(View view) {
+        Intent i = new Intent(MainActivity.this, AddEventActivity.class);
+        startActivity(i);
+    }
+
+
     private void initializeFields() {
 
-    }
-
-    public void onLogOutClick(View view) {
-        mAuth.signOut();
-        sendUserToLoginActivityWithFlags();
-    }
-
-    public void onHomeClick(View view) {
-        
-    }
-
-    public void onPopularClick(View view) {
     }
 }
