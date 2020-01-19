@@ -67,21 +67,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sendUserToHomeActivity() {
-        Intent loginIntent = new Intent(MainActivity.this, MainActivity.class);
-        startActivity(loginIntent);
+        return;
     }
 
     private void sendUserToSearchActivity() {
-        Intent loginIntent = new Intent(MainActivity.this, SearchActivity.class);
-        startActivity(loginIntent);
+        Intent searchIntent = new Intent(MainActivity.this, SearchActivity.class);
+        startActivity(searchIntent);
     }
 
     private void sendUserToAddActivity() {
+        Intent addIntent = new Intent(MainActivity.this, AddEventActivity.class);
+        startActivity(addIntent);
     }
 
     private void sendUserToSavedActivity() {
-        Intent loginIntent = new Intent(MainActivity.this, SavedActivity.class);
-        startActivity(loginIntent);
+        Intent savedIntent = new Intent(MainActivity.this, SavedActivity.class);
+        startActivity(savedIntent);
 
     }
 

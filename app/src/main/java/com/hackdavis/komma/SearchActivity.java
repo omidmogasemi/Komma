@@ -42,21 +42,22 @@ public class SearchActivity extends AppCompatActivity {
 
 
     private void sendUserToHomeActivity() {
-        Intent loginIntent = new Intent(SearchActivity.this, MainActivity.class);
-        startActivity(loginIntent);
+        Intent homeIntent = new Intent(SearchActivity.this, MainActivity.class);
+        startActivity(homeIntent);
     }
 
     private void sendUserToSearchActivity() {
-        Intent loginIntent = new Intent(SearchActivity.this, SearchActivity.class);
-        startActivity(loginIntent);
+        return;
     }
 
     private void sendUserToAddActivity() {
+        Intent searchIntent = new Intent(SearchActivity.this, AddEventActivity.class);
+        startActivity(searchIntent);
     }
 
     private void sendUserToSavedActivity() {
-        Intent loginIntent = new Intent(SearchActivity.this, SavedActivity.class);
-        startActivity(loginIntent);
+        Intent savedIntent = new Intent(SearchActivity.this, SavedActivity.class);
+        startActivity(savedIntent);
 
     }
 
