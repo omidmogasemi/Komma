@@ -7,94 +7,94 @@
     android:layout_height="match_parent"
     android:id="@+id/main_layout"
     android:background="@color/colorPrimary">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linear_layout_main">
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:orientation="vertical" android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="30dp"
-            android:id="@+id/buttons">
-
-            <Button
-                android:background="@drawable/white_button_background"
-                android:id="@+id/home_button"
-                android:layout_width="130dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="80dp"
-                android:layout_marginRight="40dp"
-                android:text="@string/home_text" />
-
-            <Button
-
-                android:background="@drawable/white_button_background"
-                android:id="@+id/popular_button"
-                android:layout_width="130dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="80dp"
-                android:layout_marginLeft="40dp"
-                android:text="@string/popular_text" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/linear_layout">
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
-
-
-            <Button
-                android:id="@+id/button10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Button10" />
-
-            <Button
-                android:id="@+id/button9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Button10" />
-
-            <Button
-                android:background="@drawable/white_button_background"
-                android:id="@+id/button8"
+            android:id="@+id/linear_layout_main">
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="30dp"
+                android:id="@+id/buttons">
 
-                android:text="Button8" />
+                <Button
+                    android:background="@drawable/white_button_background"
+                    android:id="@+id/home_button"
+                    android:layout_width="130dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="80dp"
+                    android:layout_marginRight="40dp"
+                    android:text="@string/home_text" />
 
-            <Button
-                android:background="@drawable/white_button_background"
-                android:id="@+id/button7"
+                <Button
+
+                    android:background="@drawable/white_button_background"
+                    android:id="@+id/popular_button"
+                    android:layout_width="130dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="80dp"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/popular_text" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="30dp"
-                android:text="Button9" />
+                android:orientation="horizontal"
+                android:id="@+id/linear_layout">
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+
+                <Button
+                    android:id="@+id/button10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Button10" />
+
+                <Button
+                    android:id="@+id/button9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Button10" />
+
+                <Button
+                    android:background="@drawable/white_button_background"
+                    android:id="@+id/button8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginRight="40dp"
+
+                    android:text="Button8" />
+
+                <Button
+                    android:background="@drawable/white_button_background"
+                    android:id="@+id/button7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="30dp"
+                    android:text="Button9" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+    
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"
