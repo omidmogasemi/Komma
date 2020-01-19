@@ -40,15 +40,15 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragMan = getSupportFragmentManager();
         FragmentTransaction fragTransaction = fragMan.beginTransaction();
 
-        FragmentActivityPoo myFrag = new FragmentActivityPoo();
-        myFrag.setNameText("Party in ARC");
-        myFrag.setLocationText("Davis, CA");
-        myFrag.setDescriptionText("We are gonna code till we throw up");
-        myFrag.numberGoingText("450");
-        myFrag.dateTimeText("January 20, 2020. 18:00");
+        //FragmentActivityPoo myFrag = new FragmentActivityPoo();
+        //myFrag.setNameText("Party in ARC");
+        //myFrag.setLocationText("Davis, CA");
+        //myFrag.setDescriptionText("We are gonna code till we throw up");
+        //myFrag.numberGoingText("450");
+        //myFrag.dateTimeText("January 20, 2020. 18:00");
 
-        fragTransaction.add(linearLayout.getId(), myFrag , "fragment");
-        fragTransaction.commit();
+        //fragTransaction.add(linearLayout.getId(), myFrag , "fragment");
+        //fragTransaction.commit();
         //
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
