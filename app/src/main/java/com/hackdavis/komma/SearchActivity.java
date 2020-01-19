@@ -6,10 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SearchActivity extends AppCompatActivity {
+
+    private static final String[] TAGS = new String[] {
+            "Davis Computer Science Club", "History Club", "Philosophy Club", "Entrepreneurship Club", "Women in Computer Science"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,19 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, TAGS);
+        final AutoCompleteTextView textView = (AutoCompleteTextView)findViewById(R.id.search_bar);
+        textView.setThreshold(0);
+        textView.setAdapter(adapter);
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView.setThreshold(0);
+            }
+        });
     }
 
 
@@ -60,5 +80,4 @@ public class SearchActivity extends AppCompatActivity {
         startActivity(savedIntent);
 
     }
-
 }

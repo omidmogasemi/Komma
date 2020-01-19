@@ -43,16 +43,21 @@
 
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
+            <AutoCompleteTextView
+                android:id="@+id/search_bar"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="What club are you searching for?" />
+                android:background="@drawable/edittext_background"
+                android:hint="Please enter tag here..."
+                android:textAlignment="center">
+            </AutoCompleteTextView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp"
+                android:onClick="showDropdownOptions"/>
         </LinearLayout>
     </ScrollView>
     <LinearLayout
