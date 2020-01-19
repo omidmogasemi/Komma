@@ -45,7 +45,7 @@ public class UsersAdapter extends ArrayAdapter<MyEvent> {
 
         eventName.setText(myEvent.getName());
         eventDes.setText(myEvent.getDescription());
-        numGoing.setText(myEvent.getAttendees());
+        numGoing.setText("" + myEvent.getAttendees());
         time.setText(myEvent.getStartTime() + "\n" + myEvent.getStartDate());
         location.setText(myEvent.getLocation());
 

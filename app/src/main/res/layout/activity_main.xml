@@ -1,87 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main_layout"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/home_button"
+            android:layout_width="130dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/white_button_background"
+            android:onClick="onHomeClick"
+            android:text="@string/home_text" />
+
+        <Button
+
+            android:id="@+id/popular_button"
+            android:layout_width="130dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginEnd="80dp"
+            android:background="@drawable/white_button_background"
+            android:onClick="onPopularClick"
+            android:text="@string/popular_text" />
+    </LinearLayout>
 
     <ListView
 
+        android:id="@+id/main_listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        android:id="@+id/main_listView">
-
-        <LinearLayout
-            android:id="@+id/linear_layout_main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/buttons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="15dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/home_button"
-                    android:layout_width="130dp"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="80dp"
-                    android:layout_marginRight="40dp"
-                    android:background="@drawable/white_button_background"
-                    android:onClick="onHomeClick"
-                    android:text="@string/home_text" />
-
-                <Button
-
-                    android:id="@+id/popular_button"
-                    android:layout_width="130dp"
-                    android:layout_height="70dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginEnd="80dp"
-                    android:background="@drawable/white_button_background"
-                    android:onClick="onPopularClick"
-                    android:text="@string/popular_text" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linear_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:orientation="horizontal">
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:orientation="horizontal" />
-        </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
     </ListView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
         app:itemIconTint="@color/colorPrimaryDark"
         app:itemTextColor="@color/colorPrimary"
+        android:layout_gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:itemHorizontalTranslationEnabled="false"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/navigation" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

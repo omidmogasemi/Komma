@@ -33,33 +33,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initializeFields();
 
-        linearLayout = findViewById(R.id.linear_layout_main);
-        //honestly not exactly sure what this does, but it works to get me a fragment
-
-        //FragmentManager fragMan = getSupportFragmentManager();
-        //FragmentTransaction fragTransaction = fragMan.beginTransaction();
-
-        //FragmentActivityPoo myFrag = new FragmentActivityPoo();
-       // myFrag.setNameText("Party in ARC");
-        //myFrag.setLocationText("Davis, CA");
-        //myFrag.setDescriptionText("We are gonna code till we throw up");
-        //myFrag.numberGoingText("450");
-        //myFrag.dateTimeText("January 20, 2020. 18:00");
-
-        //fragTransaction.add(linearLayout.getId(), myFrag , "fragment");
-        //fragTransaction.commit();
-        //
-
 
         // Construct the data source
         ArrayList<MyEvent> arrayOfUsers = new ArrayList<MyEvent>();
-// Create the adapter to convert the array to views
+
         UsersAdapter adapter = new UsersAdapter(this, arrayOfUsers);
-// Attach the adapter to a ListView
+
         ListView listView = (ListView) findViewById(R.id.main_listView);
         listView.setAdapter(adapter);
 
-
+        MyEvent myEventtwo = new MyEvent("Culture Stuff", "Go eat stuff i guess", "10:00", "Jan 22", 12, "Haring Hall");
+        adapter.add(myEventtwo);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
