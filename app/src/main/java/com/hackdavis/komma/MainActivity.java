@@ -40,45 +40,48 @@ public class MainActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         if (currentUser == null)
             sendUserToLoginActivityWithFlags();
+
+        BottomNavigationView nav = (BottomNavigationView) findViewById(R.id.nav_view);
+        nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        sendUserToHomeActivity();
+                        return true;
+                    case R.id.search:
+                        sendUserToSearchActivity();
+                        return true;
+                    case R.id.add:
+                        sendUserToAddActivity();
+                        return true;
+
+                    case R.id.saved:
+                        sendUserToSavedActivity();
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.home:
-                    sendUserToHomeActivity();
-                    return true;
-
-                case R.id.search:
-                    sendUserToSearchActivity();
-                    return true;
-
-                case R.id.add:
-                    sendUserToAddActivity();
-                    return true;
-
-                case R.id.saved:
-                    sendUserToSavedActivity();
-                    return true;
-            }
-            return false;
-        }
-    };
-
     private void sendUserToHomeActivity() {
+        Intent loginIntent = new Intent(MainActivity.this, MainActivity.class);
+        startActivity(loginIntent);
     }
 
     private void sendUserToSearchActivity() {
+        Intent loginIntent = new Intent(MainActivity.this, SearchActivity.class);
+        startActivity(loginIntent);
     }
 
     private void sendUserToAddActivity() {
     }
 
     private void sendUserToSavedActivity() {
+        Intent loginIntent = new Intent(MainActivity.this, SavedActivity.class);
+        startActivity(loginIntent);
+
     }
 
     private void sendUserToLoginActivityWithFlags() {
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onHomeClick(View view) {
-        
+
     }
 
     public void onPopularClick(View view) {

@@ -17,4 +17,5 @@
     <string name="home_text">Home</string>
     <string name="popular_text">Popular</string>
     <string name="logout">Logout</string>
+    <string name="saved_activity">Saved Activity</string>
 </resources>
