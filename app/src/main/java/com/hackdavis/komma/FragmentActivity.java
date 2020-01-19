@@ -24,7 +24,7 @@ public class FragmentActivity extends Fragment {
                 container, false);
         return view;
     }
-
+//hi
 
 
     public void setNameText(String text) {
