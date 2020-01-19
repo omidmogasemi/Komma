@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager fragMan = getSupportFragmentManager();
         FragmentTransaction fragTransaction = fragMan.beginTransaction();
-
+        //test
         Fragment myFrag = new FragmentActivityPoo();
         //myFrag.setNameText("Party in ARC");
         //myFrag.setLocationText("Davis, CA");
