@@ -8,8 +8,8 @@
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
         android:layout_marginTop="80dp"
         android:background="@drawable/edittext_background"
         android:ems="20"
@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_image" />
 
-    <EditText
+    <Button
         android:id="@+id/start_date"
         android:layout_width="165dp"
         android:layout_height="55dp"
@@ -39,8 +39,10 @@
         android:textColor="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name"
-        app:layout_goneMarginLeft="4dp" />
-    <EditText
+        app:layout_goneMarginLeft="4dp"
+        android:onClick="showDatePickerDialogStartDate"
+        />
+    <Button
         android:id="@+id/end_date"
         android:layout_width="165dp"
         android:layout_height="55dp"
@@ -54,11 +56,13 @@
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/start_date"
-        app:layout_constraintTop_toBottomOf="@id/name" />
+        app:layout_constraintTop_toBottomOf="@id/name"
+        android:onClick="showDatePickerDialogEndDate"
+        />
     <EditText
         android:id="@+id/start_time"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/edittext_background"
         android:ems="20"
@@ -74,11 +78,10 @@
         app:layout_constraintTop_toBottomOf="@id/end_date" />
 
 
-
     <EditText
         android:id="@+id/end_time"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/edittext_background"
         android:fontFamily="@font/montserrat"

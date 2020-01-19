@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(loginIntent);
         finish();
     }
+
+    public void clickAddButton(View view) {
+        Intent i = new Intent(MainActivity.this, AddEventActivity.class);
+        startActivity(i);
+    }
+
 
     private void initializeFields() {
 
