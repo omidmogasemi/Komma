@@ -3,14 +3,20 @@ package com.hackdavis.komma;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -18,12 +24,29 @@ import java.util.Calendar;
 public class AddEventActivity extends AppCompatActivity {
     private EditText inputName, inputDescription;
     private static int day, month, year, hour, minute;
+    private String tag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
         initFields();
+
+        Spinner dropdown = (Spinner) findViewById(R.id.tag_dropdown);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tag_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown.setAdapter(adapter);
+    }
+    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener
+    {
+        SpinnerActivity(){}
+        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
+        {
+            tag = parent.getItemAtPosition(pos).toString();
+            Log.d("HELLO", tag);
+        }
+        public void onNothingSelected(AdapterView<?> adapterView){}
+
     }
     private void initFields()
     {
@@ -43,15 +66,17 @@ public class AddEventActivity extends AppCompatActivity {
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current time as the default values for the picker
             final Calendar c = Calendar.getInstance();
-            hour = c.get(Calendar.HOUR);
-            minute = c.get(Calendar.MINUTE);
+            int h = c.get(Calendar.HOUR);
+            int m = c.get(Calendar.MINUTE);
 
             // Create a new instance of TimePickerDialog and return it
-            return new TimePickerDialog(getActivity(), this, hour, minute, DateFormat.is24HourFormat(getActivity()));
+            return new TimePickerDialog(getActivity(), this, h, m, DateFormat.is24HourFormat(getActivity()));
         }
 
         public void onTimeSet(TimePicker view, int h, int m) {
             // Do something with the time chosen by the user
+            hour = h;
+            minute = m;
         }
     }
     public static class DatePickerFragment extends DialogFragment
@@ -62,16 +87,19 @@ public class AddEventActivity extends AppCompatActivity {
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current time as the default values for the picker
             final Calendar c = Calendar.getInstance();
-            day = c.get(Calendar.DAY_OF_MONTH);
-            month = c.get(Calendar.MONTH);
-            year = c.get(Calendar.YEAR);
+            int d = c.get(Calendar.DAY_OF_MONTH);
+            int m = c.get(Calendar.MONTH);
+            int y = c.get(Calendar.YEAR);
 
             // Create a new instance of TimePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, day, month, year);
+            return new DatePickerDialog(getActivity(), this, d, m, y);
         }
 
-        public void onDateSet(DatePicker view, int y, int m, int d) {
+        public void onDateSet(DatePicker view, int yy, int mm, int dd) {
             // Do something with the time chosen by the user
+            day = dd;
+            month = mm;
+            year = yy;
         }
     }
 

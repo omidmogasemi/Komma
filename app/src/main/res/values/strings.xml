@@ -13,4 +13,11 @@
     <string name="date">Date:</string>
     <string name="home">Home</string>
     <string name="submit_button">Submit</string>
+    <string-array name="tag_options">
+        <item>Davis Computer Science Club</item>
+        <item>History Club</item>
+        <item>Philosophy Club</item>
+        <item>Entrepreneurship Club</item>
+        <item>Women in Computer Science</item>
+    </string-array>
 </resources>
