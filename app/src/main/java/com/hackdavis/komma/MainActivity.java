@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragMan = getSupportFragmentManager();
         FragmentTransaction fragTransaction = fragMan.beginTransaction();
 
-        //FragmentActivityPoo myFrag = new FragmentActivityPoo();
+        Fragment myFrag = new FragmentActivityPoo();
         //myFrag.setNameText("Party in ARC");
         //myFrag.setLocationText("Davis, CA");
         //myFrag.setDescriptionText("We are gonna code till we throw up");
