@@ -1,10 +1,15 @@
 package com.hackdavis.komma;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initializeFields();
 
-        linearLayout = findViewById(R.id.linear_layout);
+        linearLayout = findViewById(R.id.linear_layout_main);
 
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < 80; i++)
         {
             TextView textView = new TextView(this);
             textView.setText("Text numbers: " + i);
@@ -37,6 +42,45 @@ public class MainActivity extends AppCompatActivity {
             sendUserToLoginActivityWithFlags();
     }
 
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.home:
+                    sendUserToHomeActivity();
+                    return true;
+
+                case R.id.search:
+                    sendUserToSearchActivity();
+                    return true;
+
+                case R.id.add:
+                    sendUserToAddActivity();
+                    return true;
+
+                case R.id.saved:
+                    sendUserToSavedActivity();
+                    return true;
+            }
+            return false;
+        }
+    };
+
+    private void sendUserToHomeActivity() {
+    }
+
+    private void sendUserToSearchActivity() {
+    }
+
+    private void sendUserToAddActivity() {
+    }
+
+    private void sendUserToSavedActivity() {
+    }
+
     private void sendUserToLoginActivityWithFlags() {
         Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -46,5 +90,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeFields() {
 
+    }
+
+    public void onLogOutClick(View view) {
+        mAuth.signOut();
+        sendUserToLoginActivityWithFlags();
     }
 }

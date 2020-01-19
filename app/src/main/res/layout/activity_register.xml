@@ -23,10 +23,29 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
-        android:id="@+id/register_email"
+        android:id="@+id/register_name"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
+        android:background="@drawable/edittext_background"
+        android:ems="20"
+        android:fontFamily="@font/montserrat"
+        android:drawableStart="@drawable/name"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:maxEms="20"
+        android:padding="16dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_image" />
+
+    <EditText
+        android:id="@+id/register_email"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:background="@drawable/edittext_background"
         android:ems="20"
         android:fontFamily="@font/montserrat"
@@ -36,10 +55,10 @@
         android:maxEms="20"
         android:padding="16dp"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/register_image" />
+        app:layout_constraintTop_toBottomOf="@id/register_name" />
 
     <EditText
         android:id="@+id/register_password"
@@ -54,7 +73,7 @@
         android:padding="16dp"
         android:ems="20"
         android:maxEms="20"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorPrimaryDark"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +83,7 @@
         android:id="@+id/register_button"
         android:layout_width="175dp"
         android:layout_height="40dp"
-        android:layout_marginTop="175dp"
+        android:layout_marginTop="65dp"
         android:background="@drawable/button_background"
         android:height="45dp"
         android:width="240dp"

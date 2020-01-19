@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shoe Sheets</string>
+    <string name="app_name">Komma</string>
     <string name="login_button">Login</string>
     <string name="register_button">Register</string>
     <string name="email">Email</string>

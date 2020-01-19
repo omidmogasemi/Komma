@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -34,7 +35,7 @@ import java.util.regex.Pattern;
 public class RegisterActivity extends AppCompatActivity {
 
     private Button createAccountButton;
-    private EditText userEmail, userPassword;
+    private EditText userName, userEmail, userPassword;
     private TextView alreadyHaveAccountLink;
 
     private FirebaseAuth mAuth;
@@ -43,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
 
-    private String email, password;
+    private String name, email, password;
 
     /* Establishes the user password pattern, which must not be:
      * less than 8 characters, does not have at least 1 alphabet, 1 number, and 1 special character *
@@ -81,6 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void createNewAccount() {
         // take the text from the email & pw fields upon the submit button being pressed
+        name = userName.getText().toString();
         email = userEmail.getText().toString();
         password = userPassword.getText().toString();
 
@@ -91,11 +93,14 @@ public class RegisterActivity extends AppCompatActivity {
          * their PW is less than 8 characters, does not have at least 1 alphabet, 1 number, and 1 special character
          * IS THIS A PROBLEM THAT I'M DEALING WITH THE PASSWORD IN PLAIN TEXT?
          */
-        if (TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "Please enter email...", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(this, "Please enter your name...", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Please enter your email...", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please enter password...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter your password...", Toast.LENGTH_SHORT).show();
         }
         else if(!isEmailValid(email)) {
             Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
@@ -122,12 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                createAccountInDatabase(email);
-                                email = "";
-                                password = "";
-                                sendUserToMainActivityWithFlags();
-                                Toast.makeText(RegisterActivity.this, "Account created successfully", Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
+                                createAccountInDatabase(name);
                             }
                             else {
                                 String message = task.getException().toString();
@@ -153,20 +153,25 @@ public class RegisterActivity extends AppCompatActivity {
         return matcher.matches();
     }
 
-    private void createAccountInDatabase(String e) {
+    private void createAccountInDatabase(String n) {
         String currentUserID = mAuth.getCurrentUser().getUid();
+        Log.d("HERE1", currentUserID);
+        Log.d("NAME", n);
 
         Map<String, Object> newUser = new HashMap<>();
-        newUser.put("EMAIL_KEY", e);
-        newUser.put("ACTUAL_PURCHASES", 0.00);
-        newUser.put("PREDICTED_SALES", 0.00);
-        newUser.put("ACTUAL_SALES", 0.00);
+        newUser.put("NAME", n);
+        Log.d("HERE2", "You are here.");
 
         db.collection("users").document(currentUserID).set(newUser)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        return;
+                        Log.d("HERE3", "Bruh");
+                        email = "";
+                        password = "";
+                        sendUserToMainActivityWithFlags();
+                        Toast.makeText(RegisterActivity.this, "Account created successfully", Toast.LENGTH_SHORT).show();
+                        loadingBar.dismiss();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -196,6 +201,7 @@ public class RegisterActivity extends AppCompatActivity {
     // initializes the input fields and loading bar
     private void initalizeFields() {
         createAccountButton = (Button)findViewById(R.id.register_button);
+        userName = (EditText)findViewById(R.id.register_name);
         userEmail = (EditText)findViewById(R.id.register_email);
         userPassword = (EditText)findViewById(R.id.register_password);
         alreadyHaveAccountLink = (TextView)findViewById(R.id.already_have_account_link);
