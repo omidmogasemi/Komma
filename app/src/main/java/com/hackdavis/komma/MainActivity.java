@@ -30,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
         linearLayout = findViewById(R.id.linear_layout_main);
 
-        for(int i = 0; i < 80; i++)
+        for(int i = 0; i < 50; i++)
         {
             TextView textView = new TextView(this);
-            textView.setText("Text numbers: " + i);
+            textView.setText("Event: " + i + "\n Location: Haring Hall \n Date: January 25 \n Time: 8:00PM");
             linearLayout.addView(textView);
         }
         mAuth = FirebaseAuth.getInstance();
@@ -95,5 +95,12 @@ public class MainActivity extends AppCompatActivity {
     public void onLogOutClick(View view) {
         mAuth.signOut();
         sendUserToLoginActivityWithFlags();
+    }
+
+    public void onHomeClick(View view) {
+        
+    }
+
+    public void onPopularClick(View view) {
     }
 }
