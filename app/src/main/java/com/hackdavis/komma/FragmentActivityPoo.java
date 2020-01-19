@@ -22,7 +22,7 @@ public class FragmentActivityPoo extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_fragment,
                 container, false);
-        return view;
+        return inflater.inflate(R.layout.activity_fragment, container, false);
     }
 //hi
 
