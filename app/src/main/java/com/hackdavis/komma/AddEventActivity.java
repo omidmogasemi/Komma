@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -15,10 +16,12 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,15 +30,19 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
-public class AddEventActivity extends AppCompatActivity {
+public class AddEventActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private EditText inputName, inputDescription;
     private static int day, month, year, hour, minute;
     private String tag;
+    private static Button startDate, startTime;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -53,17 +60,18 @@ public class AddEventActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         inputName = (EditText)findViewById(R.id.name);
         inputDescription = (EditText)findViewById(R.id.description);
+        startDate = findViewById(R.id.start_date);
+        startTime = findViewById(R.id.start_time);
 
-        Spinner dropdown = (Spinner) findViewById(R.id.tag_dropdown);
+        Spinner spinner = findViewById(R.id.tag_dropdown);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tag_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdown.setAdapter(adapter);
-        dropdown.setOnItemSelectedListener(this);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
-        Spinner spinner = (Spinner) parent;
         tag = parent.getItemAtPosition(pos).toString();
     }
 
@@ -77,7 +85,7 @@ public class AddEventActivity extends AppCompatActivity {
         String description = inputDescription.getText().toString();
 
         final String currentUserID = mAuth.getCurrentUser().getUid();
-        MyEvent event = new MyEvent(inputName, inputDescription, startTime, startDate, endTime, endDate);
+        MyEvent event = new MyEvent(name, description, convertTime(hour, minute), convertDate(year, month, day), 0);
         String token = UUID.randomUUID().toString();
 
         Map<String, Object> newEvent = new HashMap<>();
@@ -86,7 +94,8 @@ public class AddEventActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-
+                        Toast.makeText(AddEventActivity.this, "Event successfully added", Toast.LENGTH_SHORT);
+                        sendUserToMainActivityWithFlags();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -116,6 +125,7 @@ public class AddEventActivity extends AppCompatActivity {
             // Do something with the time chosen by the user
             hour = h;
             minute = m;
+            startTime.setText(convertTime(hour, minute));
         }
     }
     public static class DatePickerFragment extends DialogFragment
@@ -129,9 +139,10 @@ public class AddEventActivity extends AppCompatActivity {
             int d = c.get(Calendar.DAY_OF_MONTH);
             int m = c.get(Calendar.MONTH);
             int y = c.get(Calendar.YEAR);
+            c.set(d, m, y);
 
             // Create a new instance of TimePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, d, m, y);
+            return new DatePickerDialog(getActivity(), this, 2020, 00, 19);
         }
 
         public void onDateSet(DatePicker view, int yy, int mm, int dd) {
@@ -139,15 +150,11 @@ public class AddEventActivity extends AppCompatActivity {
             day = dd;
             month = mm;
             year = yy;
+            startDate.setText(convertDate(day, month, year));
         }
     }
 
     public void showTimePickerDialogStartDate(View view) {
-        DialogFragment newFragment = new TimePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "timePicker");
-    }
-
-    public void showTimePickerDialogEndDate(View view) {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getSupportFragmentManager(), "timePicker");
     }
@@ -157,8 +164,20 @@ public class AddEventActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-    public void showDatePickerDialogEndDate(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
+    private static String convertDate(int dd, int mm, int yy) {
+        String convertedDate = dd + "-" + mm + "-" + yy;
+        return convertedDate;
+    }
+
+    private static String convertTime(int hh, int min) {
+        String convertedTime = hh + ":" + min;
+        return convertedTime;
+    }
+
+    private void sendUserToMainActivityWithFlags() {
+        Intent mainIntent = new Intent(AddEventActivity.this, MainActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(mainIntent);
+        finish();
     }
 }
