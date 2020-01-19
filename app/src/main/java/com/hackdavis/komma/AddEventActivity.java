@@ -10,17 +10,31 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
 
 public class AddEventActivity extends AppCompatActivity {
+    private EditText inputName, inputDescription;
+    private static int day, month, year, hour, minute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
+        initFields();
     }
+    private void initFields()
+    {
+        inputName = (EditText)findViewById(R.id.name);
+        inputDescription = (EditText)findViewById(R.id.description);
+    }
+    public void send_data(View view) {
+        String name = inputName.getText().toString();
+        String description = inputDescription.getText().toString();
+    }
+
     public static class TimePickerFragment extends DialogFragment
             implements TimePickerDialog.OnTimeSetListener {
 
@@ -29,14 +43,14 @@ public class AddEventActivity extends AppCompatActivity {
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current time as the default values for the picker
             final Calendar c = Calendar.getInstance();
-            int hour = c.get(Calendar.HOUR);
-            int minute = c.get(Calendar.MINUTE);
+            hour = c.get(Calendar.HOUR);
+            minute = c.get(Calendar.MINUTE);
 
             // Create a new instance of TimePickerDialog and return it
             return new TimePickerDialog(getActivity(), this, hour, minute, DateFormat.is24HourFormat(getActivity()));
         }
 
-        public void onTimeSet(TimePicker view, int hour, int minute) {
+        public void onTimeSet(TimePicker view, int h, int m) {
             // Do something with the time chosen by the user
         }
     }
@@ -48,15 +62,15 @@ public class AddEventActivity extends AppCompatActivity {
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current time as the default values for the picker
             final Calendar c = Calendar.getInstance();
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            int month = c.get(Calendar.MONTH);
-            int year = c.get(Calendar.YEAR);
+            day = c.get(Calendar.DAY_OF_MONTH);
+            month = c.get(Calendar.MONTH);
+            year = c.get(Calendar.YEAR);
 
             // Create a new instance of TimePickerDialog and return it
             return new DatePickerDialog(getActivity(), this, day, month, year);
         }
 
-        public void onDateSet(DatePicker view, int year, int month, int day) {
+        public void onDateSet(DatePicker view, int y, int m, int d) {
             // Do something with the time chosen by the user
         }
     }
