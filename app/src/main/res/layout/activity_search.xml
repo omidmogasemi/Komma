@@ -57,7 +57,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="20dp"
-                android:onClick="showDropdownOptions"/>
+                android:onClick="showDropdownOptions" />
+
+            <ImageView
+                android:id="@+id/submit_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search"
+                android:onClick="retrieve_data"/>
         </LinearLayout>
     </ScrollView>
     <LinearLayout
