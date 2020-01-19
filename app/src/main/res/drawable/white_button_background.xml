@@ -6,7 +6,7 @@
         />
 
     <corners
-        android:radius="200dp"
+        android:radius="130dp"
         />
 
     <item android:state_pressed="true">
