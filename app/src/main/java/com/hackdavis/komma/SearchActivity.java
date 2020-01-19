@@ -128,11 +128,11 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void sendEventToUI(String s) {
-        String eventName = processValue(s, )
+        /*String eventName = processValue(s, )
         String eventDescription = ;
         String startDate = ;
         String startTime = ;
-        String attendees = ;
+        String attendees = ;*/
     }
 
     private String processValue(String s) {
