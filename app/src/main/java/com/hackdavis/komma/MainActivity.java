@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         if (currentUser == null)
             sendUserToLoginActivityWithFlags();
-
+        //comment
         BottomNavigationView nav = (BottomNavigationView) findViewById(R.id.nav_view);
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
