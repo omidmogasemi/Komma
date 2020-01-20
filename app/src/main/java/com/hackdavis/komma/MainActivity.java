@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initializeFields();
 
+
         // Construct the data source
         ArrayList<MyEvent> arrayOfUsers = new ArrayList<MyEvent>();
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.main_listView);
         listView.setAdapter(adapter);
 
-        MyEvent myEventtwo = new MyEvent("Culture Stuff", "Go eat stuff i guess", "10:00", "Jan 22", 12, "Haring Hall");
+        MyEvent myEventtwo = new MyEvent("Culture Meeting", "Talk about Culture", "10:00", "Jan 22", 12, "Haring Hall");
         adapter.add(myEventtwo);
 
         mAuth = FirebaseAuth.getInstance();
